@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "yz.li.navigation"
+    namespace = "yz.li.core_tools"
     compileSdk {
         version = release(37)
     }

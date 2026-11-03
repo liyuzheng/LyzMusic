@@ -25,4 +25,5 @@ dependencyResolutionManagement {
 rootProject.name = "LYZMusic"
 include(":app")
 include(":core")
-include(":core:navigation")
+include(":core:core_navigation")
+include(":core:core_tools")
