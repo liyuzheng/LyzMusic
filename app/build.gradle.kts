@@ -19,8 +19,13 @@ android {
             }
         }
     }
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
     implementation(projects.core.coreTools)
+    implementation(projects.core.coreMvvm)
+    implementation(projects.core.coreCommon)
 }

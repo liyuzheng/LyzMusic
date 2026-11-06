@@ -1,10 +1,9 @@
 package yz.li.music
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import yz.li.core_mvvm.BaseBindingAct
+import yz.li.core_mvvm.exts.binding
+import yz.li.music.databinding.MainActBinding
 
-class MainAct: AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+class MainAct : BaseBindingAct<MainActBinding>() {
+    override val mBinding by binding<MainActBinding>(R.layout.main_act)
 }

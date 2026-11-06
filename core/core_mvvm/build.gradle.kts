@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.lyzmusic.android.mvvm.library)
+    alias(libs.plugins.lyzmusic.android.library)
+    alias(libs.plugins.lyzmusic.android.mvvm)
 }
 
 android {

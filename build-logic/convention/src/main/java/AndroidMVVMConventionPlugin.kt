@@ -16,14 +16,11 @@
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.apply
 import yz.li.convention.exts.configureMVVM
 
-abstract class AndroidMVVMLibraryConventionPlugin : Plugin<Project> {
+abstract class AndroidMVVMConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "lyzmusic.android.library")
-            apply(plugin = "com.google.devtools.ksp")
             this.configureMVVM()
         }
     }

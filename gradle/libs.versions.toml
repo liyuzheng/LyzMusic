@@ -52,6 +52,6 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 lyzmusic-room = { id = "lyzmusic.room" }
 lyzmusic-android-application = { id = "lyzmusic.android.application" }
 lyzmusic-android-library = { id = "lyzmusic.android.library" }
-lyzmusic-android-mvvm-library = { id = "lyzmusic.android.mvvm.library" }
+lyzmusic-android-mvvm = { id = "lyzmusic.android.mvvm" }
 kotlin-library = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }

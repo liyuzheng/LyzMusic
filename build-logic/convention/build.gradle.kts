@@ -64,8 +64,8 @@ gradlePlugin {
             implementationClass = "AndroidLibraryConventionPlugin"
         }
         register("androidMVVMLibrary") {
-            id = libs.plugins.lyzmusic.android.mvvm.library.get().pluginId
-            implementationClass = "AndroidMVVMLibraryConventionPlugin"
+            id = libs.plugins.lyzmusic.android.mvvm.get().pluginId
+            implementationClass = "AndroidMVVMConventionPlugin"
         }
     }
 }
