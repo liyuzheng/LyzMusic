@@ -1,4 +1,4 @@
-package yz.li.core_navigation
+package yz.li.data
 
 import org.junit.Test
 

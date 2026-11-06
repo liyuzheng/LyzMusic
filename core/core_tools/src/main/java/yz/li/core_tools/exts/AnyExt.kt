@@ -1,6 +1,6 @@
 package yz.li.core_tools.exts
 
-import android.util.Log
+import timber.log.Timber
 
 /**
  * desc:
@@ -11,7 +11,7 @@ fun Any.getSimpleNameLowerCase(): String = this::class.java.simpleName.lowercase
 
 inline fun <reified T> T?.runWhenNotNull(desc: String, block: (T) -> Unit) {
     if (this == null)
-        Log.v(TAG, "$desc 没有实现类！")
+        Timber.tag(TAG).v("$desc 没有实现类！")
     else
         runWhenNotNull(block)
 }

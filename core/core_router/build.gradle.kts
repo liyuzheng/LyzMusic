@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "yz.li.core_navigation"
+    namespace = "yz.li.core_router"
 }
 
 dependencies {

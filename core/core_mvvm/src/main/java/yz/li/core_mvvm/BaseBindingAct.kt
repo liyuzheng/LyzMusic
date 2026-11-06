@@ -39,7 +39,7 @@ abstract class BaseBindingAct<B : ViewDataBinding> : BaseAct() {
     protected open fun setupData() = Unit
 
     /**
-     * 控件初始化，一般情况下使用livedata
+     * 控件初始化，一般情况下使用liveData
      * 这里可以做一些rv等控件的固定操作
      */
     protected open fun setupView() = Unit

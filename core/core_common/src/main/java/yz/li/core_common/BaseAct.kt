@@ -3,6 +3,7 @@ package yz.li.core_common
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 /**
@@ -11,15 +12,19 @@ import androidx.appcompat.app.AppCompatActivity
  */
 abstract class BaseAct : AppCompatActivity() {
     abstract fun getLayoutId(): Int
-
+    protected open var enableEdgeToEdge = true
     private val mLayout: Int by lazy {
         getLayoutId()
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (enableEdgeToEdge) {
+            enableEdgeToEdge()
+        }
         super.onCreate(savedInstanceState)
-        onBackPressedDispatcher.addCallback(this,
+        onBackPressedDispatcher.addCallback(
+            this,
             object : OnBackPressedCallback(onBackPressedCallbackEnable) {
                 override fun handleOnBackPressed() {
                     onBackPressedCallback()
