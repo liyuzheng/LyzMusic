@@ -28,8 +28,14 @@ android {
 dependencies {
     implementation(projects.core.coreTools)
     implementation(projects.core.coreMvvm)
+    implementation(projects.core.coreNetwork)
+    implementation(projects.core.coreWidget.corePaging)
     implementation(projects.core.coreCommon)
     implementation(libs.autoService.annotations)
+    implementation(libs.androidx.core.core.splashscreen)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.activity.ktx)
     ksp(libs.autoService.ksp)
     api(libs.timber)
 }

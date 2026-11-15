@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LYZMusic">
         <activity
-            android:name=".MainAct"
+            android:name=".SplashAct"
             android:exported="true"
+            android:theme="@style/Theme.App.Launcher"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +32,10 @@
             </intent-filter>
 
         </activity>
-
+        <activity
+            android:name=".MainAct"
+            android:exported="true"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>
