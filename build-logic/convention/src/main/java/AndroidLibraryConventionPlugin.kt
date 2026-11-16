@@ -27,8 +27,6 @@ abstract class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             apply(plugin = "com.android.library")
-            apply(plugin = "com.google.devtools.ksp")
-
             extensions.configure<LibraryExtension> {
                 buildFeatures.apply {
                     buildConfig = true

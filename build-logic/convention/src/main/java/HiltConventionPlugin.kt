@@ -23,7 +23,6 @@ import yz.li.convention.exts.libs
 class HiltConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            
             dependencies {
                 "ksp"(libs.findLibrary("hilt.compiler").get())
             }
@@ -37,7 +36,7 @@ class HiltConventionPlugin : Plugin<Project> {
 
             // 4. 场景 B：如果是 Android 模块（app 或 library），应用 Hilt Android 插件并引入 hilt-android
             pluginManager.withPlugin("com.android.base") {
-                apply(plugin = "dagger.hilt.android.plugin")
+                apply(plugin = libs.findPlugin("hilt").get().get().pluginId)
                 dependencies {
                     "implementation"(libs.findLibrary("hilt.android").get())
                 }

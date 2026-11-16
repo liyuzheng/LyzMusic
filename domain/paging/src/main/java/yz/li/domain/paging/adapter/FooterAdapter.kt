@@ -1,4 +1,4 @@
-package yz.li.core_paging.adapter
+package yz.li.domain.paging.adapter
 
 import android.view.LayoutInflater
 import android.view.View

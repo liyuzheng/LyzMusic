@@ -1,4 +1,4 @@
-package yz.li.core_paging.adapter
+package yz.li.domain.paging.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import yz.li.core_paging.R
+import yz.li.core_paging.adapter.BasePagingAdapter
 
 /**
  * desc:

@@ -19,8 +19,7 @@ espressoCore = "3.7.0"
 appcompat = "1.8.0"
 material = "1.14.0"
 timber = "5.0.1"
-# 👇 修改点 1：降级到 1.9.0（或 1.10.0）以兼容 AGP 内置的 Kotlin 2.2/2.3 编译器，彻底解决 metadata 2.4.0 报错
-kotlinxSerializationJson = "1.9.0"
+kotlinxSerializationJson = "1.12.0"
 mmkv = "2.4.3"
 autoService = "1.1.1"
 autoServiceKsp = "1.2.0"
@@ -72,7 +71,6 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
-hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

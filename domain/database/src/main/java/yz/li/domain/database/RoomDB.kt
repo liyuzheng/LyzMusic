@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import yz.li.domain.database.converters.LocalTypeConverter
+import yz.li.domain.database.dao.RemoteDao
 import yz.li.domain.database.entities.UserEntity
 
 /**
@@ -22,13 +23,13 @@ object RoomDB {
         this.context = context.applicationContext
     }
 
-    val INSTANCE: AppDataBase by lazy { Holder.holder }
+    val INSTANCE: AppDatabase by lazy { Holder.holder }
 
     private object Holder {
         val holder by lazy {
             Room.databaseBuilder(
                 context.applicationContext,
-                AppDataBase::class.java,
+                AppDatabase::class.java,
                 "lyzmusic_room_db.db" //数据库名称
             )
                 .allowMainThreadQueries() //允许启用同步查询，即：允许主线程可以查询数据库，这个配置要视情况使用，一般不推荐同步查询
@@ -45,6 +46,6 @@ object RoomDB {
     version = 2, exportSchema = false
 )
 @TypeConverters(value = [LocalTypeConverter::class])
-abstract class AppDataBase : RoomDatabase() {
-
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun remoteDao(): RemoteDao
 }

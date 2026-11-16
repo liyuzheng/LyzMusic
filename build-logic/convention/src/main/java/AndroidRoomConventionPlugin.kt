@@ -26,6 +26,7 @@ import yz.li.convention.exts.libs
 class AndroidRoomConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
+            apply(plugin = "com.google.devtools.ksp")
             apply(plugin = "androidx.room")
 
             extensions.configure<KspExtension> {

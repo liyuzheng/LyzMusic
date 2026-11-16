@@ -1,4 +1,4 @@
-package yz.li.core_paging.local
+package yz.li.core_paging.model
 
 /**
  * desc:

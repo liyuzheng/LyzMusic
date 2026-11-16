@@ -1,4 +1,4 @@
-package yz.li.core_paging.adapter
+package yz.li.domain.paging.adapter
 
 import android.view.View
 import android.widget.ProgressBar

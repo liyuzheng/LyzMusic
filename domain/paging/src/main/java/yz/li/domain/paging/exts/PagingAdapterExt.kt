@@ -1,4 +1,4 @@
-package yz.li.core_paging.exts
+package yz.li.domain.paging.exts
 
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.paging.CombinedLoadStates
@@ -9,8 +9,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import yz.li.core_paging.adapter.EmptyAdapter
-import yz.li.core_paging.adapter.FooterAdapter
+import yz.li.core_paging.exts.RemotePresentationState
+import yz.li.core_paging.exts.asRemotePresentationState
+import yz.li.core_paging.exts.refreshAdapter
+import yz.li.domain.paging.adapter.EmptyAdapter
+import yz.li.domain.paging.adapter.FooterAdapter
 
 /**
  * desc:
