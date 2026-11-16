@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import yz.li.domain.database.converters.LocalTypeConverter
 import yz.li.domain.database.dao.RemoteDao
+import yz.li.domain.database.entities.RemoteEntity
 import yz.li.domain.database.entities.UserEntity
 
 /**
@@ -42,7 +43,7 @@ object RoomDB {
 }
 
 @Database(
-    entities = [UserEntity::class],
+    entities = [UserEntity::class, RemoteEntity::class],
     version = 2, exportSchema = false
 )
 @TypeConverters(value = [LocalTypeConverter::class])

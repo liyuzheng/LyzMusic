@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.lyzmusic.android.application)
+    alias(libs.plugins.lyzmusic.hilt)
 }
 
 android {
@@ -31,8 +32,10 @@ dependencies {
     implementation(projects.core.coreWidget.coreGlassview)
     implementation(projects.core.coreWidget.corePaging)
     implementation(projects.core.coreCommon)
+    implementation(projects.domain.database)
+    implementation(projects.domain.paging)
     implementation(libs.autoService.annotations)
-    implementation(libs.androidx.core.core.splashscreen)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.activity.ktx)

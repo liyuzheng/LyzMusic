@@ -2,8 +2,6 @@ package yz.li.music
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.ViewTreeObserver
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -29,48 +27,36 @@ class SplashAct : BaseAct() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setupExitSplashScreenAnim(splashScreen)
-        splashScreen.setKeepOnScreenCondition { true }
-        setupSplashScreen(splashScreen)
-
+        splashScreen.setKeepOnScreenCondition {
+            // 只要返回 true，启动画面就会一直停留在屏幕上；一旦变为 false 立即平滑消失
+            !mViewModel.isReady
+        }
         mViewModel.init()
     }
 
-    private fun setupSplashScreen(splashScreen: SplashScreen) {
-        val contentView: View = findViewById(android.R.id.content)
-        contentView.viewTreeObserver.addOnPreDrawListener(object :
-            ViewTreeObserver.OnPreDrawListener {
-            override fun onPreDraw(): Boolean {
-                if (mViewModel.isReady) {
-                    splashScreen.setKeepOnScreenCondition { false }
-                    contentView.viewTreeObserver.removeOnPreDrawListener(this)
-                }
-                return mViewModel.isReady
-            }
-        })
-    }
 
     private fun setupExitSplashScreenAnim(splashScreen: SplashScreen) {
         splashScreen.setOnExitAnimationListener { provider ->
             val splashScreenView = provider.view
-            val springAnim = SpringAnimation(
-                splashScreenView, SpringAnimation.TRANSLATION_X, splashScreenView.x
-            )
-            springAnim.spring.stiffness = SpringForce.STIFFNESS_MEDIUM
-            springAnim.setStartVelocity(-2000f)
-            springAnim.setStartValue(splashScreenView.x)
-            springAnim.spring.dampingRatio = SpringForce.DAMPING_RATIO_HIGH_BOUNCY
-            springAnim.start()
-
-            springAnim.addEndListener { _, _, _, _ ->
-                jumpToMain()
-                provider.remove()
-            }
+            SpringAnimation(
+                splashScreenView,
+                SpringAnimation.TRANSLATION_X,
+                splashScreenView.x
+            ).apply {
+                spring.stiffness = SpringForce.STIFFNESS_MEDIUM
+                spring.dampingRatio = SpringForce.DAMPING_RATIO_HIGH_BOUNCY
+                setStartValue(splashScreenView.x)
+                setStartVelocity(-2000f)
+                addEndListener { _, _, _, _ ->
+                    jumpToMain()
+                    provider.remove()
+                }
+            }.start()
         }
     }
 
     private fun jumpToMain() {
-
-        startActivity(Intent(this@SplashAct, MainAct::class.java))
+        MainAct.launch(this@SplashAct)
         finish()
     }
 }
