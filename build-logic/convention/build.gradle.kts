@@ -67,6 +67,10 @@ gradlePlugin {
             id = libs.plugins.lyzmusic.android.mvvm.get().pluginId
             implementationClass = "AndroidMVVMConventionPlugin"
         }
+        register("hilt") {
+            id = libs.plugins.lyzmusic.hilt.get().pluginId
+            implementationClass = "HiltConventionPlugin"
+        }
     }
 }
 

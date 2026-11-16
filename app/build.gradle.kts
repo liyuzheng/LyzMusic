@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.lyzmusic.android.application)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -29,6 +28,7 @@ dependencies {
     implementation(projects.core.coreTools)
     implementation(projects.core.coreMvvm)
     implementation(projects.core.coreNetwork)
+    implementation(projects.core.coreWidget.coreGlassview)
     implementation(projects.core.coreWidget.corePaging)
     implementation(projects.core.coreCommon)
     implementation(libs.autoService.annotations)

@@ -44,14 +44,6 @@
             app:layout_constraintTop_toBottomOf="@id/img1"
             app:layout_constraintWidth_percent="0.5" />
 
-        <yz.li.music.GlassMagnifierView
-            android:layout_width="0dp"
-            android:layout_height="140dp"
-            android:layout_marginTop="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="NewApi" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
