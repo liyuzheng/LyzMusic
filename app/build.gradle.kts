@@ -34,11 +34,13 @@ dependencies {
     implementation(projects.core.coreCommon)
     implementation(projects.domain.database)
     implementation(projects.domain.paging)
+    implementation(projects.domain.commonUi)
     implementation(libs.autoService.annotations)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.activity.ktx)
+    implementation(libs.lottie)
     ksp(libs.autoService.ksp)
     api(libs.timber)
 }

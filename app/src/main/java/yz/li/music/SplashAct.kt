@@ -7,12 +7,14 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
+import dagger.hilt.android.AndroidEntryPoint
 import yz.li.core_common.BaseAct
 
 /**
  * desc:
  * createed by liyuzheng on 2023/8/28 21:05
  */
+@AndroidEntryPoint
 class SplashAct : BaseAct() {
     override fun getLayoutId() = 0
     private val mViewModel by viewModels<SplashViewModel>()
@@ -48,8 +50,8 @@ class SplashAct : BaseAct() {
                 setStartValue(splashScreenView.x)
                 setStartVelocity(-2000f)
                 addEndListener { _, _, _, _ ->
-                    jumpToMain()
                     provider.remove()
+                    jumpToMain()
                 }
             }.start()
         }

@@ -14,8 +14,8 @@ class MainAct : BaseBindingAct<MainActBinding>() {
         const val TAG = "MainAct"
         fun launch(
             context: Context,
-        ): Intent {
-            return Intent(context, MainAct::class.java)
+        ) {
+            context.startActivity(Intent(context, MainAct::class.java))
         }
     }
 
