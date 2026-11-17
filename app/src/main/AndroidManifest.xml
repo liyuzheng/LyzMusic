@@ -10,12 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LYZMusic">
+        android:theme="@style/Theme.LyzMusic">
         <activity
-            android:name=".SplashAct"
+            android:name=".MainAct"
             android:exported="true"
-            android:theme="@style/Theme.App.Launcher"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,10 +32,10 @@
             </intent-filter>
 
         </activity>
-        <activity
-            android:name=".MainAct"
-            android:exported="true"
-            android:launchMode="singleTask" />
+        <!--        <activity-->
+        <!--            android:name=".MainAct"-->
+        <!--            android:exported="true"-->
+        <!--            android:launchMode="singleTask" />-->
     </application>
 
 </manifest>
