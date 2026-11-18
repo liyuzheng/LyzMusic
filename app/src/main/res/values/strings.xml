@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LYZMusic</string>
+    <string name="main_nav_home">首页</string>
+    <string name="main_nav_discover">发现</string>
+    <string name="main_nav_lib">音乐库</string>
+    <string name="main_nav_mine">我的</string>
 </resources>

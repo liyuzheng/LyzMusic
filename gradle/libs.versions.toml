@@ -110,3 +110,4 @@ lyzmusic-android-application = { id = "lyzmusic.android.application" }
 lyzmusic-android-library = { id = "lyzmusic.android.library" }
 lyzmusic-android-mvvm = { id = "lyzmusic.android.mvvm" }
 lyzmusic-hilt = { id = "lyzmusic.hilt" }
+lyzmusic-feature-library = { id = "lyzmusic.feature.library" }

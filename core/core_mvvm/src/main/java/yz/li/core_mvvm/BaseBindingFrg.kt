@@ -16,7 +16,7 @@ abstract class BaseBindingFragment<VB : ViewBinding>(
     private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> VB
 ) : BaseFrg() {
 
-    private var _binding: VB? = null
+    internal var _binding: VB? = null
     protected val binding: VB
         get() = checkNotNull(_binding) {
             "ViewBinding 仅在 onCreateView 和 onDestroyView 之间有效，当前视图尚未创建或已销毁。"

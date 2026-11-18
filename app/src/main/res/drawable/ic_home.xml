@@ -3,17 +3,11 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
-    <!-- 极简房子外轮廓 -->
-    <path
-        android:strokeColor="#FF000000"
-        android:strokeWidth="2"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:pathData="M3,10.5 L12,3 L21,10.5 L21,20 C21,20.55 20.55,21 20,21 L4,21 C3.45,21 3,20.55 3,20 Z" />
-    <!-- 内部极简中心点/或小门线 -->
-    <path
-        android:strokeColor="#FF000000"
-        android:strokeWidth="2"
-        android:strokeLineCap="round"
-        android:pathData="M12,14 L12,17" />
+  <path
+      android:pathData="M4,10.6 L12,4l8,6.6V19a1.6,1.6 0,0 1,-1.6 1.6H15v-6h-6v6H5.6A1.6,1.6 0,0 1,4 19z"
+      android:strokeLineJoin="round"
+      android:strokeWidth="1.7"
+      android:fillColor="#00000000"
+      android:strokeColor="#F2F3F7"
+      android:strokeLineCap="round"/>
 </vector>

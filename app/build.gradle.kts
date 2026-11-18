@@ -26,15 +26,17 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.coreTools)
-    implementation(projects.core.coreMvvm)
-    implementation(projects.core.coreNetwork)
-    implementation(projects.core.coreWidget.coreGlassview)
-    implementation(projects.core.coreWidget.corePaging)
-    implementation(projects.core.coreCommon)
-    implementation(projects.domain.database)
-    implementation(projects.domain.paging)
-    implementation(projects.domain.commonUi)
+    val autoIncludePrefixes = listOf(":core", ":data", ":domain", ":feature-api", ":feature-impl")
+    val excludeModules = setOf("") // 按需排除测试模块
+
+    rootProject.subprojects
+        .filter { project ->
+            project.childProjects.isEmpty() &&
+                    autoIncludePrefixes.any { prefix -> project.path.startsWith(prefix) } &&
+                    project.path !in excludeModules
+        }
+        .forEach { implementation(it) }
+
     implementation(libs.autoService.annotations)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

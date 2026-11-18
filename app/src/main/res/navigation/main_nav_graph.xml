@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="yz.li.feature.home.HomeFrg"
+        android:label="@string/main_nav_home"
+        tools:layout="@layout/home_frg" />
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="yz.li.feature.discover.DiscoverFrg"
+        android:label="@string/main_nav_discover"
+        tools:layout="@layout/discover_frg" />
+
+    <fragment
+        android:id="@+id/libFragment"
+        android:name="yz.li.feature.music_lib.MusicLibFrg"
+        android:label="@string/main_nav_lib"
+        tools:layout="@layout/music_lib_frg" />
+    <fragment
+        android:id="@+id/mineFragment"
+        android:name="yz.li.feature.profile.ProfileFrg"
+        android:label="@string/main_nav_mine"
+        tools:layout="@layout/profile_frg" />
+
+</navigation>
