@@ -37,7 +37,6 @@ class SplashViewModel : BaseViewModel() {
                         launch {
                             delay(2000.milliseconds)
                             Timber.v("2000 milliseconds passed")
-
                         }
                     }
                     // 只有当上面两个协程【全部】完成后，才会执行到这里

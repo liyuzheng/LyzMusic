@@ -1,13 +1,15 @@
 package yz.li.core_mvvm.exts
 
-import androidx.annotation.LayoutRes
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 
 /**
  * desc:
  * createed by liyuzheng on 2023/8/28 17:23
  */
-fun <T : ViewDataBinding> AppCompatActivity.binding(@LayoutRes resId: Int): Lazy<T> =
-    lazy { DataBindingUtil.setContentView(this, resId) }
+inline fun <T : ViewBinding> AppCompatActivity.binding(
+    crossinline inflater: (LayoutInflater) -> T
+): Lazy<T> = lazy(LazyThreadSafetyMode.NONE) {
+    inflater(layoutInflater)
+}

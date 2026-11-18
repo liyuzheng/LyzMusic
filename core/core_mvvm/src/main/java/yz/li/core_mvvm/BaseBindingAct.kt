@@ -1,58 +1,44 @@
 package yz.li.core_mvvm
 
-import android.util.SparseArray
-import androidx.annotation.CallSuper
-import androidx.core.util.forEach
-import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 import yz.li.core_common.BaseAct
-import yz.li.core_tools.exts.sparse
 
 /**
- * desc:
- * createed by liyuzheng on 2023/8/28 17:25
+ * desc: ViewBinding 活动基类
+ * created by liyuzheng on 2023/8/28 17:25
  */
-abstract class BaseBindingAct<B : ViewDataBinding> : BaseAct() {
+abstract class BaseBindingAct<B : ViewBinding> : BaseAct() {
+
     protected abstract val mBinding: B
-    private val _variables: SparseArray<ViewModel> by lazy { variables() }
 
     final override fun getLayoutId(): Int = 0
+
     override fun setup() {
         beforeSetContentView()
+        setContentView(mBinding.root)
         setupBinding(mBinding)
         setupView()
         setupData()
     }
 
     /**
-     * 需要引入xml中的viewmodel
-     * key:BR.xxx
-     * value:viewModel
+     * 补充 Binding 相关的初始配置（按需重写）
      */
-    protected open fun variables(): SparseArray<ViewModel> {
-        return sparse()
-    }
+    protected open fun setupBinding(binding: B) = Unit
 
     /**
-     * 数据加载
-     */
-    protected open fun setupData() = Unit
-
-    /**
-     * 控件初始化，一般情况下使用liveData
-     * 这里可以做一些rv等控件的固定操作
+     * 控件初始化（如 RecyclerView 适配器绑定、点击事件设置）
      */
     protected open fun setupView() = Unit
 
-    @CallSuper
-    protected open fun setupBinding(binding: B) {
-        _variables.forEach { key, value ->
-            binding.setVariable(key, value)
-        }
-        binding.lifecycleOwner = this
-        _variables.clear()
-    }
+    /**
+     * 数据加载与 StateFlow 观察
+     */
+    protected open fun setupData() = Unit
 
     open fun beforeSetContentView() = Unit
 
+    final override fun setupContentView() {
+//        super.setupContentView()
+    }
 }

@@ -60,20 +60,6 @@ internal fun Project.configureKotlinAndroid(
 }
 
 /**
- * Configure base Kotlin options for JVM (non-Android)
- */
-internal fun Project.configureKotlinJvm() {
-    extensions.configure<JavaPluginExtension> {
-        // Up to Java 11 APIs are available through desugaring
-        // https://developer.android.com/studio/write/java11-minimal-support-table
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    configureKotlin<KotlinJvmProjectExtension>()
-}
-
-/**
  * Configure base Kotlin options
  */
 private inline fun <reified T : KotlinBaseExtension> Project.configureKotlin() = configure<T> {
@@ -115,7 +101,7 @@ internal fun Project.configureMVVM() {
     with(this) {
         extensions.configure<LibraryExtension> {
             buildFeatures {
-                dataBinding = true
+                viewBinding = true
             }
         }
         dependencies {

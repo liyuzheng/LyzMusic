@@ -1,15 +1,14 @@
 package yz.li.core_paging.adapter
 
 import android.view.View
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
 /**
  * desc:
  * createed by liyuzheng on 2023/3/30 15:59
  */
-abstract class BasePagingViewHolder<M, T : ViewDataBinding>(protected val mBinding: T) :
+abstract class BasePagingViewHolder<M, T : ViewBinding>(protected val mBinding: T) :
     RecyclerView.ViewHolder(mBinding.root) {
     open fun setup() {}
 
@@ -18,9 +17,10 @@ abstract class BasePagingViewHolder<M, T : ViewDataBinding>(protected val mBindi
     open fun recycle() {
     }
 
-    inline fun <reified T : ViewDataBinding> viewHolderBinding(view: View): Lazy<T> =
-        lazy {
-            requireNotNull(DataBindingUtil.bind(view)) { "cannot find the matched layout." }
-        }
-
+    inline fun <T : ViewBinding> viewHolderBinding(
+        view: View,
+        crossinline binder: (View) -> T
+    ): Lazy<T> = lazy(LazyThreadSafetyMode.NONE) {
+        binder(view)
+    }
 }

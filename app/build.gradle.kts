@@ -21,7 +21,7 @@ android {
         }
     }
     buildFeatures {
-        dataBinding = true
+        viewBinding = true
     }
 }
 
@@ -41,6 +41,11 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.lottie)
+    implementation(libs.com.tencent.mmkv.static)
+    implementation(libs.androidx.startup.runtime)
+    implementation(libs.bundles.navigation)
+    // 可选：如果需要在该模块的 Fragment 中使用 hiltNavGraphViewModels()
+    implementation(libs.androidx.hilt.navigation.fragment)
     ksp(libs.autoService.ksp)
     api(libs.timber)
 }
