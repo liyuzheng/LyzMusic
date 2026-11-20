@@ -5,9 +5,9 @@ import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import yz.li.core_mvvm.BaseBindingFragment
+import yz.li.domain.common_ui.widget.GlassBottomNavView
 import yz.li.music.R
 import yz.li.music.databinding.MainFrgBinding
-import yz.li.domain.common_ui.widget.GlassBottomNavView
 
 /**
  * 首页容器 Fragment。
@@ -22,7 +22,14 @@ class MainFrg : BaseBindingFragment<MainFrgBinding>(MainFrgBinding::inflate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setup()
+    }
 
+    private fun setup() {
+        setupBottomNav()
+    }
+
+    private fun setupBottomNav() {
         // 在 Fragment 中嵌套 NavHost，必须从 childFragmentManager 获取。
         val navHostFragment = childFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
