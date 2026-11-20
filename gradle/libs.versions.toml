@@ -39,6 +39,8 @@ startupRuntime = "1.2.0"
 
 # Navigation 核心版本
 navigation = "2.10.2"
+
+browser = "1.10.0"
 [libraries]
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
@@ -87,6 +89,8 @@ androidx-navigation-fragment = { group = "androidx.navigation", name = "navigati
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 # 可选：Hilt 导航图级 ViewModel 扩展库
 androidx-hilt-navigation-fragment = { group = "androidx.hilt", name = "hilt-navigation-fragment", version.ref = "hiltExt" }
+
+androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
 [bundles]
 # 将常用的两个 Navigation 核心库打包，方便模块一行引入
 navigation = [

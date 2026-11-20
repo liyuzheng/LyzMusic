@@ -1,14 +1,10 @@
 plugins {
     alias(libs.plugins.lyzmusic.android.library)
+    alias(libs.plugins.lyzmusic.android.mvvm)
 }
 
 android {
     namespace = "yz.li.domain.common_ui"
-
-    buildFeatures {
-        // GlassBottomNavView 使用 ViewBinding 加载自身布局和导航项布局。
-        viewBinding = true
-    }
 }
 
 dependencies {
