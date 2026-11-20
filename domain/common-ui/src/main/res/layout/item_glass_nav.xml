@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 单个导航项：等宽排列，包含图标、可选角标和文字 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_item_root"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <!-- 图标区域，角标叠在右上角 -->
+    <FrameLayout
+        android:layout_width="38dp"
+        android:layout_height="26dp">
+
+        <ImageView
+            android:id="@+id/nav_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/nav_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:minWidth="14dp"
+            android:minHeight="14dp"
+            android:gravity="center"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            android:visibility="gone"
+            tools:text="3"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <!-- 菜单文字；颜色由 GlassBottomNavView 根据选中态和背景明暗动态设置 -->
+    <TextView
+        android:id="@+id/nav_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#4B5563"
+        android:textSize="10sp"
+        tools:text="首页" />
+
+</LinearLayout>

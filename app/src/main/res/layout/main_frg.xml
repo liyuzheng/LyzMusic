@@ -4,25 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 页面容器铺满整个屏幕，内容会延伸到玻璃导航下方，供其采样、放大和模糊 -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/main_nav_graph" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
+    <!-- 液态玻璃导航的悬浮容器，左右和底部留出呼吸空间 -->
+    <FrameLayout
+        android:id="@+id/glass_nav_container"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
+        android:layout_height="68dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 自定义玻璃导航：负责背景采样、放大模糊、触摸高光和菜单切换 -->
+        <yz.li.domain.common_ui.widget.GlassBottomNavView
+            android:id="@+id/glass_nav"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="12dp" />
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

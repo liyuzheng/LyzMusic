@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 选中态磨砂胶囊背景；当前导航已取消圆框选中，该资源保留作兼容备选 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="270"
+        android:startColor="#E6FFFFFF"
+        android:centerColor="#CCF2F6FF"
+        android:endColor="#A8DCE5F2"
+        android:type="linear" />
+    <corners android:radius="22dp" />
+    <stroke
+        android:width="1dp"
+        android:color="#FFFFFF" />
+</shape>
