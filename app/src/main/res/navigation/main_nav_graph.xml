@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/homeFragment">
+    <!-- 一级页面，底部tab -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="yz.li.feature.home.HomeFrg"
@@ -26,4 +27,5 @@
         android:label="@string/main_nav_mine"
         tools:layout="@layout/profile_frg" />
 
+    <include app:graph="@navigation/auth_nav_graph" />
 </navigation>

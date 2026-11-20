@@ -14,12 +14,12 @@ class BaseRequest {
 
     var contentType: MediaType? = null
 
-    fun api(init: () -> String) {
-        api = init()
+    fun api(value: String) {
+        api = value
     }
 
-    fun requestMode(init: () -> Int) {
-        requestMode = init()
+    fun requestMode(value: Int) {
+        requestMode = value
     }
 
     fun file(init: () -> File) {

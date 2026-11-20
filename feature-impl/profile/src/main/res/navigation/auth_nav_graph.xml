@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/authFragment">
+
+    <!-- 可选：声明二级页面需要接收的参数 -->
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="yz.li.feature.profile.auth.AuthFragment"
+        android:label="详情页"
+        tools:layout="@layout/auth_frg">
+        <deepLink app:uri="lyzmusic://app/auth" />
+    </fragment>
+</navigation>

@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.com.tencent.mmkv.static)
     implementation(libs.androidx.startup.runtime)
     implementation(libs.bundles.navigation)
+    implementation(libs.androidx.browser)
     // 可选：如果需要在该模块的 Fragment 中使用 hiltNavGraphViewModels()
     implementation(libs.androidx.hilt.navigation.fragment)
     ksp(libs.autoService.ksp)

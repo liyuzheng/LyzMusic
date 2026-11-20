@@ -7,5 +7,9 @@ android {
 }
 
 dependencies {
-
+    compileOnly(libs.com.tencent.mmkv.static)
+    compileOnly(projects.domain.database)
+    compileOnly(projects.domain.network)
+    compileOnly(projects.core.coreNetwork)
+    compileOnly(projects.core.coreTools)
 }

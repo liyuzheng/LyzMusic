@@ -3,7 +3,8 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#FF424242">
 
     <!-- 图片列表由 HomeFrg 在代码中动态添加 -->
     <LinearLayout

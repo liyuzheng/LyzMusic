@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 /**
@@ -16,14 +17,17 @@ import androidx.viewbinding.ViewBinding
  * @Author: yuzhe
  * @CreateDate: 2026/11/18 12:58
  */
-
 abstract class KeepAliveTabFragment<VB : ViewBinding>(
     private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> VB
-) : BaseBindingFragment<VB>(inflate) {
-    // 缓存根视图实例
-    private var cachedRootView: View? = null
+) : Fragment() {
 
-    // 标记是否已完成首次初始化
+    private var _binding: VB? = null
+    protected val binding: VB
+        get() = checkNotNull(_binding) {
+            "ViewBinding 尚未初始化或 Fragment 已经彻底销毁（onDestroy）。"
+        }
+
+    private var cachedRootView: View? = null
     private var isInitialized = false
 
     override fun onCreateView(
@@ -33,12 +37,10 @@ abstract class KeepAliveTabFragment<VB : ViewBinding>(
     ): View {
         val currentView = cachedRootView
         if (currentView != null) {
-            // 关键保护：如果缓存的 View 仍挂载在旧的父容器上，先将其移除，防止抛出 IllegalStateException
             (currentView.parent as? ViewGroup)?.removeView(currentView)
             return currentView
         }
 
-        // 首次进入时正常创建 Binding 并缓存根视图
         val newBinding = inflate(inflater, container, false)
         _binding = newBinding
         cachedRootView = newBinding.root
@@ -53,15 +55,10 @@ abstract class KeepAliveTabFragment<VB : ViewBinding>(
         }
     }
 
-    /**
-     * 子类重写此方法，编写控件监听设置与首次网络请求逻辑。
-     * 切换 Tab 回来时不会重复触发此方法。
-     */
     protected abstract fun initViewAndLoadData()
 
     override fun onDestroy() {
         super.onDestroy()
-        // 注意：必须在 onDestroy（Fragment 彻底销毁）而非 onDestroyView 时置空
         _binding = null
         cachedRootView = null
         isInitialized = false

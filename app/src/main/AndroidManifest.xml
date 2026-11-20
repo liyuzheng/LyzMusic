@@ -29,8 +29,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="auth_success"
-                    android:scheme="yuzheng" />
+                    android:scheme="lyzmusic"
+                    android:host="oauth"
+                    android:pathPrefix="/callback" />
             </intent-filter>
 
         </activity>

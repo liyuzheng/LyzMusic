@@ -78,6 +78,10 @@ class GlassBottomNavView @JvmOverloads constructor(
             if (handled) {
                 selectedItemId = destination.id
             }
+            if (isVisible) {
+                //防止被染色
+                postInvalidateOnAnimation()
+            }
         }
 
     // 玻璃参数统一按屏幕密度换算为像素，保证不同设备观感一致。
