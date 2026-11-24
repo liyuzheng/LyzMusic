@@ -7,8 +7,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 import timber.log.Timber
 import yz.li.core_mvvm.BaseViewModel
+import yz.li.core_tools.exts.runSafely
 import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.coroutines.cancellation.CancellationException
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -53,15 +53,5 @@ class SplashViewModel : BaseViewModel() {
                 isReady.set(true)
             }
         }
-    }
-}
-
-private suspend inline fun runSafely(taskName: String, crossinline block: suspend () -> Unit) {
-    try {
-        block()
-    } catch (e: CancellationException) {
-        throw e
-    } catch (e: Exception) {
-        Timber.e(e, "启动任务 [$taskName] 执行失败，已安全跳过")
     }
 }

@@ -1,6 +1,7 @@
 package yz.li.core_network
 
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -14,7 +15,7 @@ import retrofit2.http.Url
 
 /**
  * desc:
- * createed by liyuzheng on 2023/8/24 20:00
+ * created by liyuzheng on 2023/8/24 20:00
  */
 interface Api {
     @GET
@@ -26,7 +27,7 @@ interface Api {
     @POST
     suspend fun post(
         @Url url: String,
-        @Body body: MutableMap<String, Any?>,
+        @Body body: RequestBody,
     ): String
 
     @Multipart
@@ -39,7 +40,7 @@ interface Api {
     @PUT
     suspend fun put(
         @Url url: String,
-        @Body body: MutableMap<String, Any?>,
+        @Body body: RequestBody,
     ): String
 
     @DELETE
@@ -51,6 +52,6 @@ interface Api {
     @HTTP(method = "DELETE", hasBody = true)
     suspend fun deleteBody(
         @Url url: String,
-        @Body body: MutableMap<String, Any?>,
+        @Body body: RequestBody,
     ): String
 }

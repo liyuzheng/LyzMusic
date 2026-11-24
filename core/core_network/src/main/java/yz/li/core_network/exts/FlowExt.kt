@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 import yz.li.core_network.NetworkExceptionConstantCode
 import yz.li.core_network.Result
 
@@ -19,6 +20,7 @@ inline fun <reified T : Any> Flow<T>.completedIn(
 ) {
     callback(Result.Loading(true))
     this@completedIn.catch {
+        Timber.e("completedIn error: ${it.message}")
         val pair = it.toPair()
         if (pair.first == NetworkExceptionConstantCode.CANCEL) {
             callback(Result.Cancel())
@@ -28,6 +30,7 @@ inline fun <reified T : Any> Flow<T>.completedIn(
     }.onEach {
         callback(Result.Success(it))
     }.catch {
+        Timber.e("completedIn1 error: ${it.message}")
         val pair = it.toPair()
         if (pair.first == NetworkExceptionConstantCode.CANCEL) {
             callback(Result.Cancel())

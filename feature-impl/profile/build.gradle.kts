@@ -12,4 +12,5 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     compileOnly(libs.androidx.browser)
     compileOnly(projects.data.profile)
+    compileOnly(projects.domain.network)
 }

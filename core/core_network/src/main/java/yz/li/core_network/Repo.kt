@@ -1,10 +1,20 @@
 package yz.li.core_network
 
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import okhttp3.FormBody
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class Repo {
     companion object {
@@ -44,35 +54,35 @@ class Repo {
             RequestMode.POST -> {
                 apiService.post(
                     api,
-                    buildBody(params)
+                    buildRequestBody(params, request.contentType)
                 )
             }
 
             RequestMode.GET -> {
                 apiService.get(
                     api,
-                    buildBody(params)
+                    buildQueryMap(params)
                 )
             }
 
             RequestMode.PUT -> {
                 apiService.put(
                     api,
-                    buildBody(params)
+                    buildRequestBody(params, request.contentType)
                 )
             }
 
             RequestMode.DELETE -> {
                 apiService.delete(
                     api,
-                    buildBody(params)
+                    buildQueryMap(params)
                 )
             }
 
             RequestMode.DELETE_BODY -> {
                 apiService.deleteBody(
                     api,
-                    buildBody(params)
+                    buildRequestBody(params, request.contentType)
                 )
             }
 
@@ -82,8 +92,61 @@ class Repo {
         }
     }
 
-    private fun buildBody(body: MutableMap<String, Any?>): MutableMap<String, Any?> {
-        return body
+    /**
+     * 过滤 GET / DELETE Query 参数中的 null 值，防止 Retrofit @QueryMap 报错
+     */
+    private fun buildQueryMap(body: MutableMap<String, Any?>): MutableMap<String, Any?> {
+        return body.filterValues { it != null }.toMutableMap()
     }
 
+    /**
+     * 根据 contentType 自动构建 FormBody (表单) 或 JSON RequestBody
+     */
+    private fun buildRequestBody(
+        params: MutableMap<String, Any?>,
+        contentType: MediaType?
+    ): RequestBody {
+        val mediaType = contentType ?: "application/json; charset=utf-8".toMediaType()
+
+        // 1. 表单模式 (application/x-www-form-urlencoded) -> 适用于 Audius OAuth 换取 Token
+        if (mediaType.type == "application" && mediaType.subtype == "x-www-form-urlencoded") {
+            return FormBody.Builder().apply {
+                params.forEach { (key, value) ->
+                    if (value != null) {
+                        add(key, value.toString())
+                    }
+                }
+            }.build()
+        }
+
+        // 2. JSON 模式 (默认 application/json) -> 将 Map<String, Any?> 安全转换为 JsonObject 字符串
+        val jsonString = params.toJsonElement().toString()
+        return jsonString.toRequestBody(mediaType)
+    }
+
+    /**
+     * 将任意 Map / List / 基础类型安全转换为 kotlinx.serialization 的 JsonElement
+     */
+    private fun Any?.toJsonElement(): JsonElement {
+        return when (this) {
+            null -> JsonNull
+            is JsonElement -> this
+            is Boolean -> JsonPrimitive(this)
+            is Number -> JsonPrimitive(this)
+            is String -> JsonPrimitive(this)
+            is Map<*, *> -> {
+                val content = LinkedHashMap<String, JsonElement>()
+                for ((k, v) in this) {
+                    if (k != null) {
+                        content[k.toString()] = v.toJsonElement()
+                    }
+                }
+                JsonObject(content)
+            }
+
+            is Iterable<*> -> JsonArray(this.map { it.toJsonElement() })
+            is Array<*> -> JsonArray(this.map { it.toJsonElement() })
+            else -> JsonPrimitive(this.toString())
+        }
+    }
 }

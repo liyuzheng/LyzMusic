@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 /**
@@ -19,13 +18,7 @@ import androidx.viewbinding.ViewBinding
  */
 abstract class KeepAliveTabFragment<VB : ViewBinding>(
     private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> VB
-) : Fragment() {
-
-    private var _binding: VB? = null
-    protected val binding: VB
-        get() = checkNotNull(_binding) {
-            "ViewBinding 尚未初始化或 Fragment 已经彻底销毁（onDestroy）。"
-        }
+) : BaseBindingFragment<VB>(inflate) {
 
     private var cachedRootView: View? = null
     private var isInitialized = false
@@ -40,9 +33,8 @@ abstract class KeepAliveTabFragment<VB : ViewBinding>(
             (currentView.parent as? ViewGroup)?.removeView(currentView)
             return currentView
         }
-
         val newBinding = inflate(inflater, container, false)
-        _binding = newBinding
+        mBinding = newBinding
         cachedRootView = newBinding.root
         return newBinding.root
     }
@@ -59,8 +51,10 @@ abstract class KeepAliveTabFragment<VB : ViewBinding>(
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding = null
+        mBinding = null
         cachedRootView = null
         isInitialized = false
     }
+
+    override fun destroyView() {}
 }

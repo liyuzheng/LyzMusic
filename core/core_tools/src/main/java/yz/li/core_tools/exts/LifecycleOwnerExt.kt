@@ -7,6 +7,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import kotlin.coroutines.cancellation.CancellationException
 
 /**
  * desc:
@@ -42,5 +44,15 @@ inline fun LifecycleOwner.launchWhenCreated(
             block()
             this@launch.cancel()
         }
+    }
+}
+
+suspend inline fun runSafely(taskName: String, crossinline block: suspend () -> Unit) {
+    try {
+        block()
+    } catch (e: CancellationException) {
+        throw e
+    } catch (e: Exception) {
+        Timber.e(e, "启动任务 [$taskName] 执行失败，已安全跳过")
     }
 }

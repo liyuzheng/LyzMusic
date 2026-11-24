@@ -11,4 +11,5 @@ dependencies {
     implementation(libs.com.squareup.okhttp3.logging.interceptor)
     implementation(libs.com.squareup.retrofit2.converter.gson)
     compileOnly(projects.core.coreTools)
+    compileOnly(libs.kotlinx.serialization.json)
 }

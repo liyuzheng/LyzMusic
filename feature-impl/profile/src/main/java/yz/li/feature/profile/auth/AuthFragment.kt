@@ -6,7 +6,7 @@ import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.graphics.toColorInt
 import yz.li.core_mvvm.BaseBindingFragment
-import yz.li.data.profile.AuthRepo
+import yz.li.domain.network.auth.AuthRepo
 import yz.li.feature.profile.databinding.AuthFrgBinding
 
 /**
@@ -17,7 +17,7 @@ import yz.li.feature.profile.databinding.AuthFrgBinding
 class AuthFragment : BaseBindingFragment<AuthFrgBinding>(AuthFrgBinding::inflate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val uri = AuthRepo().buildLoginUri()
+        val uri = AuthRepo.buildAuthUri()
         val darkColorParams = CustomTabColorSchemeParams.Builder()
             .setToolbarColor("#121212".toColorInt())
             .setNavigationBarColor("#121212".toColorInt())

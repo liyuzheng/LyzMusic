@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import yz.li.core_tools.exts.debug
+import yz.li.core_tools.exts.release
 import java.util.concurrent.TimeUnit
 
 /**
@@ -12,21 +13,23 @@ import java.util.concurrent.TimeUnit
  */
 class RetrofitClient : IRetrofitClient {
     companion object {
-        private const val BASE_URL = "http://www.baidu.com"
+        private const val BASE_URL = "https://audius.co"
     }
 
     private fun provideOkHttpClient(): OkHttpClient {
-        var builder = OkHttpClient.Builder()
+        return OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
-        debug {
-            builder = builder.addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
-        }
-        return builder.build()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                debug {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+                release {
+                    level = HttpLoggingInterceptor.Level.NONE
+                }
+            }).build()
     }
 
     override fun provideRetrofit(): Retrofit {
